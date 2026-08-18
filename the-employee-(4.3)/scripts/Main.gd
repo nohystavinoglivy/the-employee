@@ -1,6 +1,6 @@
 extends Node2D
 
-# ── Main — root script ────────────────────────────────────────────────────────
+# ── Main — root script ───────────────────────────────────────────────────────
 # Creates world container, UI layer, initialises all systems,
 # registers input actions, calls SceneManager.start_game().
 
@@ -20,14 +20,14 @@ func _ready() -> void:
 	SceneManager.initialize(_world, _ui_layer, _fade)
 	SceneManager.start_game()
 
-# ── World container ───────────────────────────────────────────────────────────
+# ── World container ─────────────────────────────────────────────────────────
 
 func _setup_world() -> void:
 	_world = Node2D.new()
 	_world.name = "World"
 	add_child(_world)
 
-# ── UI layer ──────────────────────────────────────────────────────────────────
+# ── UI layer ────────────────────────────────────────────────────────────
 
 func _setup_ui() -> void:
 	_ui_layer = CanvasLayer.new()
@@ -36,41 +36,36 @@ func _setup_ui() -> void:
 	add_child(_ui_layer)
 
 	# Fade overlay
-	var fade_script := load("res://scripts/ui/FadeOverlay.gd")
 	_fade = CanvasLayer.new()
-	_fade.set_script(fade_script)
+	_fade.script = preload("res://scripts/ui/FadeOverlay.gd")
 	_fade.name = "FadeOverlay"
 	add_child(_fade)
 
 	# HUD
-	var hud_script := load("res://scripts/ui/HUD.gd")
 	_hud = CanvasLayer.new()
-	_hud.set_script(hud_script)
+	_hud.script = preload("res://scripts/ui/HUD.gd")
 	_hud.name = "HUD"
 	add_child(_hud)
 
 	# Dialogue box
-	var dlg_script := load("res://scripts/ui/DialogueBox.gd")
 	_dialogue_box = CanvasLayer.new()
-	_dialogue_box.set_script(dlg_script)
+	_dialogue_box.script = preload("res://scripts/ui/DialogueBox.gd")
 	_dialogue_box.name = "DialogueBox"
 	add_child(_dialogue_box)
 
 	# Name input
-	var name_script := load("res://scripts/ui/NameInputUI.gd")
 	_name_input = CanvasLayer.new()
-	_name_input.set_script(name_script)
+	_name_input.script = preload("res://scripts/ui/NameInputUI.gd")
 	_name_input.name = "NameInputUI"
 	add_child(_name_input)
 
 	# Task interface
-	var task_script := load("res://scripts/ui/TaskInterface.gd")
 	_task_iface = CanvasLayer.new()
-	_task_iface.set_script(task_script)
+	_task_iface.script = preload("res://scripts/ui/TaskInterface.gd")
 	_task_iface.name = "TaskInterface"
 	add_child(_task_iface)
 
-# ── Signals ───────────────────────────────────────────────────────────────────
+# ── Signals ────────────────────────────────────────────────────────────
 
 func _connect_signals() -> void:
 	DialogueManager.initialize(_dialogue_box)
@@ -105,7 +100,7 @@ func _on_task_completed(_day: int) -> void:
 func _on_task_failed(_day: int) -> void:
 	AudioManager.play_interact()
 
-# ── Input ─────────────────────────────────────────────────────────────────────
+# ── Input ────────────────────────────────────────────────────────────
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
