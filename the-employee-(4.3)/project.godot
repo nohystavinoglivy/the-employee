@@ -1,0 +1,32 @@
+config_version=5
+
+[application]
+
+config/name="The Employee (4.3)"
+config/description="Part 1: The Employee — A 2D parallax narrative game"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/quit_on_go_back=false
+
+[autoload]
+
+GameState="*res://scripts/autoloads/GameState.gd"
+SceneManager="*res://scripts/autoloads/SceneManager.gd"
+DialogueManager="*res://scripts/autoloads/DialogueManager.gd"
+SaveSystem="*res://scripts/autoloads/SaveSystem.gd"
+AudioManager="*res://scripts/autoloads/AudioManager.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="forward_plus"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
